@@ -1,0 +1,205 @@
+<div class="card mb-5 text-start">
+  <div class="card-header">
+    <h5 class="mb-0 card-title">Addresses</h5>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="addressesForm" (ngSubmit)="onSubmit()" class="row g-3">
+
+      <!---------- Address line 1 ---------->
+      <div class="col-12">
+        <label for="address1" class="form-label">Address 1</label>
+        <input
+          formControlName="addressLine1"
+          id="address1"
+          placeholder="1234 Main St"
+          type="text"
+          class="form-control"
+          [ngClass]="
+            (addressesForm.get('addressLine1')?.touched || addressesForm.get('addressLine1')?.dirty) &&
+            (addressesForm.get('addressLine1')?.hasError('minLength')
+            || addressesForm.get('addressLine1')?.hasError('maxLength')
+            || addressesForm.get('addressLine1')?.hasError('required'))
+            ? 'is-invalid'
+            : (addressesForm.get('addressLine1')?.touched && addressesForm.get('addressLine1')?.dirty) && addressesForm.get('addressLine1')?.valid
+              ? 'is-valid' : ''">
+        <!---------- Validation ---------->
+        <div *ngIf="addressesForm.get('addressLine1')?.hasError('required')" class="invalid-feedback">
+          Address line #1 is required.
+        </div>
+        <div *ngIf="addressesForm.get('addressLine1')?.hasError('minLength')" class="invalid-feedback">
+          Min length of an address line #1 is 3 letters.
+        </div>
+        <div *ngIf="addressesForm.get('addressLine1')?.hasError('maxLength')" class="invalid-feedback">
+          Max length of an address line #1 is 50 letters.
+        </div>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+      </div>
+
+      <!---------- Address line 2 ---------->
+      <div class="col-12">
+        <label for="address2" class="form-label">Address 2</label>
+        <input
+          formControlName="addressLine2"
+          id="address2"
+          placeholder="Apartment, studio, or floor"
+          type="text"
+          class="form-control"
+          [ngClass]="
+            (addressesForm.get('addressLine2')?.touched || addressesForm.get('addressLine2')?.dirty)
+            &&
+            addressesForm.get('addressLine2')?.hasError('maxLength')
+            ? 'is-invalid'
+            : (addressesForm.get('addressLine2')?.touched && addressesForm.get('addressLine2')?.dirty) && addressesForm.get('addressLine2')?.valid
+              ? 'is-valid' : ''">
+        <!---------- Validation ---------->
+        <div *ngIf="addressesForm.get('addressLine2')?.hasError('maxLength')" class="invalid-feedback">
+          Max length of an address line #2 is 50 letters.
+        </div>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+      </div>
+
+      <!---------- Address line 3 ---------->
+      <div class="col-12">
+        <label for="address3" class="form-label">Address 3</label>
+        <input
+          formControlName="addressLine3"
+          id="address3"
+          placeholder="Extra information"
+          type="text"
+          class="form-control"
+          [ngClass]="
+            (addressesForm.get('addressLine3')?.touched || addressesForm.get('addressLine3')?.dirty)
+            &&
+            addressesForm.get('addressLine3')?.hasError('maxLength')
+            ? 'is-invalid'
+            : (addressesForm.get('addressLine3')?.touched && addressesForm.get('addressLine3')?.dirty) && addressesForm.get('addressLine3')?.valid
+              ? 'is-valid' : ''">
+        <!---------- Validation ---------->
+
+        <div *ngIf="addressesForm.get('addressLine3')?.hasError('maxLength')" class="invalid-feedback">
+          Max length of an address line #3 is 50 letters.
+        </div>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+      </div>
+
+      <!---------- City ---------->
+      <div class="col-4">
+        <label for="city" class="form-label">City</label>
+        <input
+          formControlName="city"
+          id="city"
+          type="text"
+          class="form-control"
+          placeholder="Amsterdam"
+          [ngClass]="
+            (addressesForm.get('city')?.touched || addressesForm.get('city')?.dirty) &&
+            (addressesForm.get('city')?.hasError('minLength')
+            || addressesForm.get('city')?.hasError('maxLength')
+            || addressesForm.get('city')?.hasError('required'))
+            ? 'is-invalid'
+            : (addressesForm.get('city')?.touched && addressesForm.get('city')?.dirty) && addressesForm.get('city')?.valid
+              ? 'is-valid' : ''">
+        <!---------- Validation ---------->
+        <div *ngIf="addressesForm.get('city')?.hasError('required')" class="invalid-feedback">
+          City is required.
+        </div>
+        <div *ngIf="addressesForm.get('city')?.hasError('minLength')" class="invalid-feedback">
+          Min length of a city is 3 letters.
+        </div>
+        <div *ngIf="addressesForm.get('city')?.hasError('maxLength')" class="invalid-feedback">
+          Max length of a city is 50 letters.
+        </div>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+      </div>
+
+      <!---------- Postal code ---------->
+      <div class="col-4">
+        <label for="postalCode" class="form-label">Postal code</label>
+        <input
+          formControlName="postalCode"
+          id="postalCode"
+          type="text"
+          class="form-control"
+          placeholder="1234AB"
+          [ngClass]="
+            (addressesForm.get('postalCode')?.touched || addressesForm.get('postalCode')?.dirty) &&
+            (addressesForm.get('postalCode')?.hasError('minLength')
+            || addressesForm.get('postalCode')?.hasError('maxLength')
+            || addressesForm.get('postalCode')?.hasError('required'))
+            ? 'is-invalid'
+            : (addressesForm.get('postalCode')?.touched && addressesForm.get('postalCode')?.dirty) && addressesForm.get('postalCode')?.valid
+              ? 'is-valid' : ''">
+        <!---------- Validation ---------->
+        <div *ngIf="addressesForm.get('postalCode')?.hasError('required')" class="invalid-feedback">
+          Postal code is required
+        </div>
+        <div *ngIf="addressesForm.get('postalCode')?.hasError('minLength')" class="invalid-feedback">
+          Min length of a postal code is 3 letters.
+        </div>
+        <div *ngIf="addressesForm.get('postalCode')?.hasError('maxLength')" class="invalid-feedback">
+          Max length of a postal code is 50 letters.
+        </div>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+      </div>
+
+      <!---------- Country ---------->
+      <div class="col-4">
+        <label for="country" class="form-label">Country</label>
+        <input
+          formControlName="country"
+          id="country"
+          type="text"
+          class="form-control"
+          placeholder="Netherlands"
+          [ngClass]="
+            (addressesForm.get('country')?.touched || addressesForm.get('country')?.dirty) &&
+            (addressesForm.get('country')?.hasError('minLength')
+            || addressesForm.get('country')?.hasError('maxLength')
+            || addressesForm.get('country')?.hasError('required'))
+            ? 'is-invalid'
+            : (addressesForm.get('country')?.touched && addressesForm.get('country')?.dirty) && addressesForm.get('country')?.valid
+              ? 'is-valid' : ''">
+        <!---------- Validation ---------->
+        <div *ngIf="addressesForm.get('country')?.hasError('required')" class="invalid-feedback">
+          Country is required.
+        </div>
+        <div *ngIf="addressesForm.get('country')?.hasError('minLength')" class="invalid-feedback">
+          Min length of a country is 3 letters.
+        </div>
+        <div *ngIf="addressesForm.get('country')?.hasError('maxLength')" class="invalid-feedback">
+          Max length of a country is 50 letters.
+        </div>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+      </div>
+
+      <!---------- Save Button with loader ---------->
+      <ng-container *ngIf="saving; then showButtonWithLoader else showNormalButton"></ng-container>
+
+      <ng-template #showButtonWithLoader>
+        <button class="col-2 btn btn-primary mt-4 ms-3" type="button" disabled>
+          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          Loading...
+        </button>
+      </ng-template>
+
+      <ng-template #showNormalButton>
+        <button class="col-2 btn btn-primary mt-4 ms-3" type="submit" [disabled]="addressesForm.invalid">
+          Save changes
+        </button>
+      </ng-template>
+
+    </form>
+  </div>
+</div>

@@ -1,0 +1,66 @@
+<ng-container *ngIf="this.goalService.currentGoal; then showGoalStats else showCreateGoalMessage"></ng-container>
+
+<ng-template #showGoalStats>
+  <!---------- Goal stats ---------->
+  <div class="container col-sm-12 col-md-12 col-lg-12 border shadow-sm">
+    <div class="d-flex flex-column">
+      <div class="px-3 py-5">
+        <h2 class="fs-3 fw-bold p-1">You goal for this week</h2>
+        <p class="fs-5 lead p-1"></p>
+
+        <!-- Progress -->
+        <div class="row text-start">
+          <p class="col-4">Your goal progress:</p>
+          <div class="progress col-6">
+            <div class="progress-bar"
+                 role="progressbar"
+                 [attr.style]="styles"
+                 aria-valuemin="0"
+                 aria-valuemax="100">
+              {{ this.goalService.getProgressPercentage() * 100 | number : '1.0-0' }}%
+            </div>
+          </div>
+        </div>
+
+        <!-- Days left to complete the goal -->
+        <div class="row text-start">
+          <p class="col-4">Days left:</p>
+          <span class="col-6 fw-bold">{{ getDaysLeft(this.goalService.currentGoal?.endDate) }}</span>
+        </div>
+
+        <!-- Selected Program -->
+        <div class="row text-start">
+          <p class="col-4">You program:</p>
+          <span class="col-6 fw-bold">{{ this.programService.currentProgram?.name }}</span>
+        </div>
+
+        <!-- Completed workouts -->
+        <div class="row text-start">
+          <p class="col-4">Workouts completed:</p>
+          <span class="col-6 fw-bold">{{ this.goalService.countFinishedWorkouts() }}
+            of {{ this.goalService.currentGoal?.workouts?.length }}</span>
+        </div>
+
+        <h3 class="fs-4 p-3 text-center">
+          {{ this.goalService.getMotivationMessage(this.goalService.getProgressPercentage()) }}
+        </h3>
+
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #showCreateGoalMessage>
+  <!---------- Create goal message ---------->
+  <div class="container col-6 col-sm-12 col-md-6 border shadow-lg">
+    <div class="d-flex flex-column">
+      <div class="p-5">
+        <h2 class="fs-3 fw-bold p-1">No active goal</h2>
+        <p class="fs-5 lead p-1">You need to set up you goal first, just click on the button below.</p>
+
+        <a routerLink="set-goal" class="btn btn-primary" role="button">Set new goal</a>
+      </div>
+    </div>
+  </div>
+</ng-template>
+

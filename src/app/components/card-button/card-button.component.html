@@ -1,0 +1,17 @@
+<!---------- Save Button with loader ---------->
+<ng-container *ngIf="loading; then showButtonWithLoader else showNormalButton"></ng-container>
+
+<ng-template #showButtonWithLoader>
+  <button class="btn btn-primary" type="button" disabled>
+    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+    Saving...
+  </button>
+</ng-template>
+
+<ng-template #showNormalButton>
+  <button
+    class="btn btn-primary"
+    (click)="this.goalService.setUserGoalByProgramId(programId, profileId)">
+    {{ name }}
+  </button>
+</ng-template>

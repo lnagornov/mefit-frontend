@@ -1,0 +1,28 @@
+<!---------- Greeting ---------->
+<section class="container row mx-auto my-3 gap-2">
+  <div class="p-3 pb-md-4 mx-auto text-center">
+    <h1 class="fs-3 fw-normal">Hello, {{ firstName ? firstName : "stranger" }}. Welcome to goal Dashboard.</h1>
+    <p class="fs-5 text-muted">
+      Here you will track your goal and progress.
+    </p>
+  </div>
+</section>
+
+<!---------- Loader ---------->
+<div *ngIf="loading" class="text-center">
+  <p>Please wait, goals loading...</p>
+  <div class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
+
+<section class="container row align-items-end mx-auto mb-5 gap-2">
+  <app-goals class="col" [styles]="'width:' + this.goalService.calculateProgressStyle() + '%;'"></app-goals>
+  <app-calendar class="col" *ngIf="this.goalService.currentGoal" [goal]="this.goalService.currentGoal"></app-calendar>
+</section>
+<app-workout-list
+  *ngIf="this.goalService.currentGoal"
+  [workouts]="this.goalService.currentGoal.workouts"
+  class="col"
+>
+</app-workout-list>

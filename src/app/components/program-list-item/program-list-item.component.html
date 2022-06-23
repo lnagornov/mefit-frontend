@@ -1,0 +1,17 @@
+<div *ngIf="program" class="card d-flex flex-column flex-fill">
+  <div class="card-body d-flex flex-column">
+    <h5 class="card-title text-start">{{ program.name }}</h5>
+    <div class="card-subtitle mb-2 d-flex justify-content-between text-muted text-start">
+      <h6>{{ program.category }}</h6>
+      <h6>{{ program.numberOfWorkouts }} {{ program.numberOfWorkouts > 1 ? 'workouts' : 'workout' }}</h6>
+    </div>
+    <p class="card-text text-start">{{ program.description }}</p>
+  </div>
+  <div class="card-footer d-grid mt-auto">
+    <app-card-button
+      [name]="buttonName"
+      [programId]="program.id"
+      [profileId]="profileId"
+    ></app-card-button>
+  </div>
+</div>

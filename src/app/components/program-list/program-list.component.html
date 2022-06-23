@@ -1,0 +1,14 @@
+<div class="container mb-5">
+  <h3 class="text-start">Programs:</h3>
+  <div class="row row-cols-1 row-cols-md-4 g-4">
+
+    <!---------- Programs cards ---------->
+    <app-program-list-item
+      *ngFor="let program of programs;"
+      [program]="program"
+      [profileId]="profileId"
+      class="col d-flex"
+    ></app-program-list-item>
+
+  </div>
+</div>

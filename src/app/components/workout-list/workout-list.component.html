@@ -1,0 +1,16 @@
+<section class="container row mx-auto my-5 gap-2 ">
+  <h3 class="text-start">Workouts to complete:</h3>
+  <div class="list-group list-group-numbered col-6 d-flex flex-fill gap-2">
+
+    <!---------- Programs cards ---------->
+    <app-workout-list-item
+      *ngFor="let workout of workouts; let indexOfWorkout=index;"
+      [workout]="workout"
+      [workoutIndex]="indexOfWorkout + 1"
+      [programName]="this.programService.currentProgram?.name"
+      class="col-6"
+    >
+    </app-workout-list-item>
+
+  </div>
+</section>

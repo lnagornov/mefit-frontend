@@ -1,0 +1,19 @@
+<div class="col">
+  <div class="list-group-item d-flex justify-content-between align-items-start text-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">{{ workoutIndex }}. {{ workout?.name }}</div>
+      {{ programName }} - {{ workout?.type }}
+      - {{ numberOfExercises }} {{ numberOfExercises > 1 ? 'exercises' : 'exercise' }}
+    </div>
+    <button
+      type="button"
+      class="btn my-auto"
+      [ngClass]="workout?.isCompleted ? 'btn-outline-primary' : 'btn-primary'"
+      [disabled]="workout?.isCompleted || this.goalService.loading"
+      (click)="showWorkoutById(workout?.id)"
+    >
+      {{ workout?.isCompleted ? "Completed " : "Start" }}
+      <i *ngIf="workout?.isCompleted" class="fa fa-check" aria-hidden="true"></i>
+    </button>
+  </div>
+</div>

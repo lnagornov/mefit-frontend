@@ -1,0 +1,65 @@
+<div class="card mb-5 text-start">
+  <div class="card-header">
+    <h5 class="mb-0 card-title">Account</h5>
+  </div>
+  <div class="card-body">
+    <!---------- Account form ---------->
+    <form [formGroup]="accountForm" *ngIf="accountForm" class="row g-3">
+
+      <!---------- Fields ---------->
+      <div class="col-12 d-grid gap-3">
+
+        <!---------- Username ---------->
+        <div class="form-group">
+          <label for="username" class="form-label disabled">Username</label>
+          <input
+            formControlName="username"
+            id="username"
+            placeholder="Username"
+            type="text"
+            class="form-control">
+        </div>
+
+        <!---------- First name ---------->
+        <div class="form-group">
+          <label for="firstName" class="form-label disabled">First name</label>
+          <input
+            formControlName="firstName"
+            id="firstName"
+            placeholder="First name"
+            type="text"
+            class="form-control">
+        </div>
+
+        <!---------- Last name ---------->
+        <div class="form-group">
+          <label for="lastName" class="form-label disabled">Last name</label>
+          <input
+            formControlName="lastName"
+            id="lastName"
+            placeholder="Last name"
+            type="text"
+            class="form-control">
+        </div>
+
+        <!---------- Email ---------->
+        <div class="form-group">
+          <label for="email" class="form-label disabled">Email</label>
+          <input
+            formControlName="email"
+            id="email"
+            placeholder="example@mail.com"
+            type="text"
+            class="form-control">
+        </div>
+
+      </div>
+
+      <!---------- Change profile button ---------->
+      <a class="col-4 btn btn-primary mt-4 ms-3" target="_blank" [href]="changeProfileLink" role="button">
+        Go to change profile
+      </a>
+
+    </form>
+  </div>
+</div>

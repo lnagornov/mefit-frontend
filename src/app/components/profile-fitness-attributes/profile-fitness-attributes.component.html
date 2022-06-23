@@ -1,0 +1,103 @@
+<div class="card mb-5 text-start">
+  <div class="card-header">
+    <h5 class="mb-0 card-title">Fitness Attributes</h5>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="fitnessAttributesForm" (ngSubmit)="onSubmit()" class="row g-3">
+
+      <!---------- Weight ---------->
+      <div class="col-6">
+        <label for="weight" class="form-label">Weight</label>
+        <input
+          formControlName="weight"
+          id="weight"
+          placeholder="Weight"
+          step="any"
+          class="form-control"
+          [ngClass]="
+            (fitnessAttributesForm.get('weight')?.touched || fitnessAttributesForm.get('weight')?.dirty) &&
+            (fitnessAttributesForm.get('weight')?.hasError('pattern') || fitnessAttributesForm.get('weight')?.hasError('required'))
+            ? 'is-invalid'
+            : (fitnessAttributesForm.get('weight')?.touched && fitnessAttributesForm.get('weight')?.dirty) && fitnessAttributesForm.get('weight')?.valid
+              ? 'is-valid' : ''"
+        >
+        <!---------- Validation ---------->
+        <div *ngIf="fitnessAttributesForm.get('weight')?.hasError('required')" class="invalid-feedback">
+          Weight is required
+        </div>
+        <div *ngIf="fitnessAttributesForm.get('weight')?.hasError('pattern')" class="invalid-feedback">
+          Invalid weight format.
+        </div>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+      </div>
+
+      <!---------- Height ---------->
+      <div class="col-6">
+        <label for="height" class="form-label">Height</label>
+        <input
+          formControlName="height"
+          id="height"
+          placeholder="Height"
+          step="any"
+          class="form-control"
+          [ngClass]="
+            (fitnessAttributesForm.get('height')?.touched || fitnessAttributesForm.get('height')?.dirty) &&
+            (fitnessAttributesForm.get('height')?.hasError('pattern') || fitnessAttributesForm.get('weight')?.hasError('required'))
+            ? 'is-invalid'
+            : (fitnessAttributesForm.get('height')?.touched && fitnessAttributesForm.get('height')?.dirty) && fitnessAttributesForm.get('height')?.valid
+              ? 'is-valid' : ''">
+        <!---------- Validation ---------->
+        <div *ngIf="fitnessAttributesForm.get('height')?.hasError('required')" class="invalid-feedback">
+          Height is required
+        </div>
+        <div *ngIf="fitnessAttributesForm.get('height')?.hasError('pattern')" class="invalid-feedback">
+          Invalid height format.
+        </div>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+      </div>
+
+      <!---------- Medical Conditions ---------->
+      <div class="col-6">
+        <label for="medicalConditions" class="form-label">Medical Conditions</label>
+        <input
+          formControlName="medicalConditions"
+          id="medicalConditions"
+          type="text"
+          class="form-control"
+          placeholder="Medical Conditions">
+      </div>
+
+      <!---------- Disabilities ---------->
+      <div class="col-6">
+        <label for="disabilities" class="form-label">Disabilities</label>
+        <input
+          formControlName="disabilities"
+          id="disabilities"
+          type="text"
+          class="form-control"
+          placeholder="Disabilities">
+      </div>
+
+      <!---------- Save Button with loader ---------->
+      <ng-container *ngIf="saving; then showButtonWithLoader else showNormalButton"></ng-container>
+
+      <ng-template #showButtonWithLoader>
+        <button class="col-2 btn btn-primary mt-4 ms-3" type="button" disabled>
+          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          Loading...
+        </button>
+      </ng-template>
+
+      <ng-template #showNormalButton>
+        <button class="col-2 btn btn-primary mt-4 ms-3" type="submit" [disabled]="fitnessAttributesForm.invalid">
+          Save changes
+        </button>
+      </ng-template>
+
+    </form>
+  </div>
+</div>
