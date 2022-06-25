@@ -212,7 +212,7 @@ export class GoalService {
   getMotivationMessage(completedRatio: number): string {
     if (completedRatio == 0) {
       return "Let's start the challenge!";
-    } else if (completedRatio < 0.5) {
+    } else if (completedRatio <= 0.5) {
       return "Great start! You can do it!";
     } else if (completedRatio > 0.5 && completedRatio < 1) {
       return "You are almost there, keep it going!";
